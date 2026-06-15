@@ -6,28 +6,31 @@ import java.sql.ResultSet;//Guarda los resultados de las consultas sql
         
 
 public class GestionLogin {
-  
+    
+ 
     
     //Funcion de autenticación para validar a los 3 usuarios principales que ingresan al sistema
     public Usuario autenticar(String usuario_n, String password){//Se pide por parámetros el nombre del usuario y la contraseña
         Usuario usuario = null;
         Connection con = Conexion.getConnection();
-        
+
         String sql = "SELECT * FROM Usuario WHERE usuario_n = ? AND password = ? AND estado = 'Activo'";
-        
+
         try{
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, usuario_n);
             ps.setString(2, password);
-            
+
             ResultSet rs = ps.executeQuery();
-            
+
             if(rs.next()){
                 String rol = rs.getString("rol");
-                
-                switch(rol){
+
+                System.out.println(">>> ENTRO AL IF, rol: [" + rol + "] longitud: " + rol.length());
+
+                switch(rol.trim()){
                     case "Admin":
-                            usuario = new Admin(
+                        usuario = new Admin(
                             rs.getInt("id_usuario"),
                             rs.getString("usuario_n"),
                             rs.getString("password"),
@@ -36,9 +39,9 @@ public class GestionLogin {
                             rs.getString("rol"),
                             rs.getString("estado")
                         );
-                            break;
+                        break;
                     case "Veterinario":
-                            usuario = new Veterinario(
+                        usuario = new Veterinario(
                             rs.getString("especialidad"),
                             rs.getInt("id_usuario"),
                             rs.getString("usuario_n"),
@@ -47,10 +50,10 @@ public class GestionLogin {
                             rs.getString("apellido"),
                             rs.getString("rol"),
                             rs.getString("estado")
-                            );
-                            break;
+                        );
+                        break;
                     case "Recepcionista":
-                            usuario = new Recepcionista(
+                        usuario = new Recepcionista(
                             rs.getInt("id_usuario"),
                             rs.getString("usuario_n"),
                             rs.getString("password"),
@@ -58,21 +61,20 @@ public class GestionLogin {
                             rs.getString("apellido"),
                             rs.getString("rol"),
                             rs.getString("estado")
-                            );
-                                    
+                        );
                         break;
-                    
-                    
                 }
-                
-                  
+                System.out.println(">>> Despues del switch, usuario es: " + usuario);
+            }else{
+                System.out.println(">>> NO ENTRO AL IF - consulta sin resultados");
             }
-                rs.close();
-                ps.close();
+
+            rs.close();
+            ps.close();
         }catch (Exception e) {
-            System.out.println("Error en autenticación: " + e.getMessage());
+            System.out.println("Error en autenticacion: " + e.getMessage());
         }
-        
+
         return usuario;
     }
     

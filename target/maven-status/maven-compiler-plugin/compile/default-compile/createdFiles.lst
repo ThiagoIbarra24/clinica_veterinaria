@@ -1,3 +1,4 @@
+com\mycompany\clinica_veterinaria\model\UsuarioDAO.class
 com\mycompany\clinica_veterinaria\model\Usuario.class
 com\mycompany\clinica_veterinaria\model\Veterinario.class
 com\mycompany\clinica_veterinaria\resources\JakartaEE10Resource.class
@@ -5,5 +6,6 @@ com\mycompany\clinica_veterinaria\controller\LoginServlet.class
 com\mycompany\clinica_veterinaria\model\Conexion.class
 com\mycompany\clinica_veterinaria\model\GestionLogin.class
 com\mycompany\clinica_veterinaria\model\Recepcionista.class
+com\mycompany\clinica_veterinaria\controller\UsuarioServlet.class
 com\mycompany\clinica_veterinaria\JakartaRestConfiguration.class
 com\mycompany\clinica_veterinaria\model\Admin.class

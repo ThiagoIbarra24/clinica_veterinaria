@@ -6,27 +6,30 @@ import java.sql.DriverManager;
 
 //Este es mi clase singleton para la conexion a base de datos
 public class Conexion {
-    private static Connection instancia = null;
-    private static final String URL =
-        "jdbc:sqlserver://THIAGOLAPTOP:1433;" +
-        "databaseName=clinica_veterinaria;" +
-        "trustServerCertificate=true;";
-    
-    private static final String USER = "admin_clinica";
-    private static final String PASSWORD = "Admin123*";
-    
-     public static Connection getConnection() {
+   private static Connection instancia = null;
+    public static String ultimoError = "sin intento";
+
+    // Lee las variables de entorno que Railway inyecta automáticamente
+    private static final String HOST = System.getenv("PGHOST");
+    private static final String PORT = System.getenv("PGPORT");
+    private static final String DB = System.getenv("PGDATABASE");
+    private static final String USER = System.getenv("PGUSER");
+    private static final String PASSWORD = System.getenv("PGPASSWORD");
+
+    public static Connection getConnection() {
         try {
             if (instancia == null || instancia.isClosed()) {
-                instancia = DriverManager.getConnection(URL);
-                System.out.println("Conexión exitosa a SQL Server");
+                Class.forName("org.postgresql.Driver");
+
+                String url = "jdbc:postgresql://" + HOST + ":" + PORT + "/" + DB;
+                instancia = DriverManager.getConnection(url, USER, PASSWORD);
+                ultimoError = "CONEXION EXITOSA";
             }
-        } catch(Exception e) {
-            System.out.println("Error de conexión: " + e.getMessage());
+        } catch (Exception e) {
+            ultimoError = e.getClass().getName() + " --- " + e.getMessage();
         }
-        return instancia;     
-}
-     
+        return instancia;
+    }     
      
              
    public static void cerrarConexion() {

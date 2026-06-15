@@ -52,12 +52,12 @@ public class LoginServlet extends HttpServlet {
             String menu = usuario.getMenuPrincipal();
             response.sendRedirect(request.getContextPath() + "/View/"+menu);
             
-        }else{
+      }else{
             //Login fallido
-            request.setAttribute("error", "Usuario o contraseña incorrectos");
-            request.getRequestDispatcher("/View/login.jsp").forward(request,response);
-            
-        }
+    request.setAttribute("error", "Usuario o contraseña incorrectos");
+    request.getRequestDispatcher("/View/login.jsp").forward(request, response);
+}
+
         
     }
 
