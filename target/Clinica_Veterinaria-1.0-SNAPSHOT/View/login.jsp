@@ -15,14 +15,19 @@
     </head>
     
      <style>
-        body {
-            background: linear-gradient(135deg, #1a3c5e 0%, #2ecc71 100%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+                 body {
+                 background: 
+                 linear-gradient(rgba(26, 60, 94, 0.85), rgba(26, 60, 94, 0.85)),
+                 url('https://images.pexels.com/photos/7474855/pexels-photo-7474855.jpeg');
+                 background-size: cover;
+                 background-position: center;
+                 background-repeat: no-repeat;
+                 min-height: 100vh;
+                 display: flex;
+                 flex-direction: column;
+                 justify-content: center;
+                 align-items: center;
+             }
         .logo-box {
             background-color: #2d6a4f;
             border-radius: 16px;
