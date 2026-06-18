@@ -16,6 +16,14 @@
         <servlet-name>UsuarioServlet</servlet-name>
         <url-pattern>/UsuarioServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+    <servlet-name>ClienteServlet</servlet-name>
+    <servlet-class>com.mycompany.clinica_veterinaria.controller.ClienteServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>ClienteServlet</servlet-name>
+    <url-pattern>/ClienteServlet</url-pattern>
+</servlet-mapping>
     <session-config>
         <session-timeout>
             30
