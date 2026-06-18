@@ -164,7 +164,7 @@
         </div>
         <span class="rol-badge">Admin</span>
 
-        <a href="#" class="nav-link-custom active"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a>
+        <a href="<%= request.getContextPath() %>/ClienteServlet" class="nav-link-custom"><i class="bi bi-person-lines-fill"></i> Clientes</a>
         <a href="<%= request.getContextPath() %>/UsuarioServlet" class="nav-link-custom"><i class="bi bi-people-fill"></i> Gestión de Usuarios</a>
         <a href="#" class="nav-link-custom"><i class="bi bi-person-lines-fill"></i> Clientes</a>
         <a href="#" class="nav-link-custom"><i class="bi bi-heart-fill"></i> Mascotas</a>

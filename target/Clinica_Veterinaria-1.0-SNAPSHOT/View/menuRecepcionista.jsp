@@ -177,7 +177,7 @@
         <span class="rol-badge">Recepcionista</span>
 
         <a href="#" class="nav-link-custom active"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a>
-        <a href="#" class="nav-link-custom"><i class="bi bi-person-lines-fill"></i> Clientes</a>
+        <a href="<%= request.getContextPath() %>/ClienteServlet" class="nav-link-custom"><i class="bi bi-person-lines-fill"></i> Clientes</a>
         <a href="#" class="nav-link-custom"><i class="bi bi-heart-fill"></i> Mascotas</a>
         <a href="#" class="nav-link-custom"><i class="bi bi-calendar-check-fill"></i> Citas</a>
         <a href="#" class="nav-link-custom"><i class="bi bi-file-medical-fill"></i> Historial Clínico</a>
