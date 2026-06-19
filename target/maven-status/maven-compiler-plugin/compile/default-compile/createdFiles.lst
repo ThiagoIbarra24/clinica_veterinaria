@@ -1,3 +1,5 @@
+com\mycompany\clinica_veterinaria\controller\CitaServlet.class
+com\mycompany\clinica_veterinaria\model\CitaDAO.class
 com\mycompany\clinica_veterinaria\model\UsuarioDAO.class
 com\mycompany\clinica_veterinaria\model\Usuario.class
 com\mycompany\clinica_veterinaria\model\Veterinario.class
@@ -7,6 +9,7 @@ com\mycompany\clinica_veterinaria\model\Recepcionista.class
 com\mycompany\clinica_veterinaria\controller\ClienteServlet.class
 com\mycompany\clinica_veterinaria\controller\MascotaServlet.class
 com\mycompany\clinica_veterinaria\model\Admin.class
+com\mycompany\clinica_veterinaria\model\Cita.class
 com\mycompany\clinica_veterinaria\model\Mascota.class
 com\mycompany\clinica_veterinaria\resources\JakartaEE10Resource.class
 com\mycompany\clinica_veterinaria\controller\LoginServlet.class

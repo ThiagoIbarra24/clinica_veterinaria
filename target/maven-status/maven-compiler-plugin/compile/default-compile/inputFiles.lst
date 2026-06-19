@@ -2,6 +2,8 @@ C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\model\Veterinario.java
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\model\GestionLogin.java
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\model\Usuario.java
+C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\controller\CitaServlet.java
+C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\model\Cita.java
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\model\Cliente.java
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\controller\MascotaServlet.java
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\model\Mascota.java
@@ -14,4 +16,5 @@ C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\controller\ClienteServlet.java
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\controller\UsuarioServlet.java
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\model\ClienteDAO.java
+C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\model\CitaDAO.java
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\controller\LoginServlet.java

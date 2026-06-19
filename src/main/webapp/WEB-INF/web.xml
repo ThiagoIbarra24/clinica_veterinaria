@@ -18,6 +18,10 @@
         <servlet-name>MascotaServlet</servlet-name>
         <servlet-class>com.mycompany.clinica_veterinaria.controller.MascotaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CitaServlet</servlet-name>
+        <servlet-class>com.mycompany.clinica_veterinaria.controller.CitaServlet</servlet-class>
+    </servlet>
 
     <!-- MAPEO DE URLs (URL → nombre del servlet) -->
     <servlet-mapping>
@@ -35,6 +39,10 @@
     <servlet-mapping>
         <servlet-name>MascotaServlet</servlet-name>
         <url-pattern>/MascotaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CitaServlet</servlet-name>
+        <url-pattern>/CitaServlet</url-pattern>
     </servlet-mapping>
 
     <session-config>
