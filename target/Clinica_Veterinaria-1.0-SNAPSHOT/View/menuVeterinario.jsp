@@ -3,7 +3,6 @@
     Created on : 9 jun 2026, 4:24:33 p.m.
     Author     : LENOVO
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.mycompany.clinica_veterinaria.model.Usuario"%>
 <%
@@ -165,7 +164,7 @@
         <a href="<%= request.getContextPath() %>/ClienteServlet" class="nav-link-custom"><i class="bi bi-person-lines-fill"></i> Clientes</a>
         <a href="<%= request.getContextPath() %>/MascotaServlet" class="nav-link-custom"><i class="bi bi-heart-fill"></i> Mascotas</a>
         <a href="<%= request.getContextPath() %>/CitaServlet" class="nav-link-custom"><i class="bi bi-calendar-check-fill"></i> Citas</a>
-        <a href="#" class="nav-link-custom"><i class="bi bi-file-medical-fill"></i> Historial Clínico</a>
+        <a href="<%= request.getContextPath() %>/HistorialServlet" class="nav-link-custom"><i class="bi bi-file-medical-fill"></i> Historial Clínico</a>
 
         <a href="<%= request.getContextPath() %>/LogoutServlet" class="nav-link-custom logout">
             <i class="bi bi-box-arrow-right"></i> Cerrar sesión

@@ -7,6 +7,7 @@ com\mycompany\clinica_veterinaria\model\GestionLogin.class
 com\mycompany\clinica_veterinaria\model\MascotaDAO.class
 com\mycompany\clinica_veterinaria\model\Recepcionista.class
 com\mycompany\clinica_veterinaria\controller\ClienteServlet.class
+com\mycompany\clinica_veterinaria\model\HistorialDAO.class
 com\mycompany\clinica_veterinaria\controller\MascotaServlet.class
 com\mycompany\clinica_veterinaria\model\Admin.class
 com\mycompany\clinica_veterinaria\model\Cita.class
@@ -18,3 +19,4 @@ com\mycompany\clinica_veterinaria\model\Conexion.class
 com\mycompany\clinica_veterinaria\controller\UsuarioServlet.class
 com\mycompany\clinica_veterinaria\JakartaRestConfiguration.class
 com\mycompany\clinica_veterinaria\model\ClienteDAO.class
+com\mycompany\clinica_veterinaria\model\Historial.class
