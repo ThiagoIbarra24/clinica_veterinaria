@@ -57,7 +57,7 @@ public class CitaDAO {
         Connection con = Conexion.getConnection();
 
         String sql = "INSERT INTO Cita (fecha_hora, motivo, estado_cita, estado, fecha_creacion, usuario_creacion, id_mascota, id_usuario, id_cliente) " +
-                     "VALUES (?, ?, ?, 'Activo', NOW(), 'sistema', ?, ?, ?)";
+             "VALUES (CAST(? AS TIMESTAMP), ?, ?, 'Activo', NOW(), 'sistema', ?, ?, ?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -103,8 +103,8 @@ public class CitaDAO {
         boolean exito = false;
         Connection con = Conexion.getConnection();
 
-        String sql = "UPDATE Cita SET fecha_hora = ?, motivo = ?, estado_cita = ?, id_mascota = ?, id_usuario = ?, id_cliente = ?, " +
-                     "fecha_modificacion = NOW(), usuario_modificacion = 'sistema' WHERE id_cita = ?";
+String sql = "UPDATE Cita SET fecha_hora = CAST(? AS TIMESTAMP), motivo = ?, estado_cita = ?, id_mascota = ?, id_usuario = ?, id_cliente = ?, " +
+             "fecha_modificacion = NOW(), usuario_modificacion = 'sistema' WHERE id_cita = ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
