@@ -169,7 +169,7 @@
         <a href="<%= request.getContextPath() %>/MascotaServlet" class="nav-link-custom"><i class="bi bi-heart-fill"></i> Mascotas</a>
         <a href="<%= request.getContextPath() %>/CitaServlet" class="nav-link-custom"><i class="bi bi-calendar-check-fill"></i> Citas</a>
         <a href="<%= request.getContextPath() %>/HistorialServlet" class="nav-link-custom"><i class="bi bi-file-medical-fill"></i> Historial Clínico</a>
-        <a href="#" class="nav-link-custom"><i class="bi bi-bar-chart-fill"></i> Reportería</a>
+        <a href="<%= request.getContextPath() %>/ReporteServlet" class="nav-link-custom"><i class="bi bi-bar-chart-fill"></i> Reportería</a>
         <a href="#" class="nav-link-custom"><i class="bi bi-shield-check"></i> Auditoría</a>
 
         <a href="<%= request.getContextPath() %>/LogoutServlet" class="nav-link-custom logout">
