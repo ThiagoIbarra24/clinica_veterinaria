@@ -21,6 +21,7 @@
         <servlet-name>CitaServlet</servlet-name>
         <servlet-class>com.mycompany.clinica_veterinaria.controller.CitaServlet</servlet-class>
     </servlet>
+    <servlet>
         <servlet-name>ReporteServlet</servlet-name>
         <servlet-class>com.mycompany.clinica_veterinaria.controller.ReporteServlet</servlet-class>
     </servlet>
@@ -29,7 +30,7 @@
         <servlet-name>HistorialServlet</servlet-name>
         <servlet-class>com.mycompany.clinica_veterinaria.controller.HistorialServlet</servlet-class>
     </servlet>
-    <servlet>
+    
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
