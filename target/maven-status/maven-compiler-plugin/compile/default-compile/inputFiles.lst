@@ -14,10 +14,12 @@ C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\model\GestionLogin.java
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\model\Usuario.java
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\controller\CitaServlet.java
+C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\model\Auditoria.java
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\model\Cliente.java
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\controller\HistorialServlet.java
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\model\Mascota.java
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\JakartaRestConfiguration.java
+C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\model\AuditoriaDAO.java
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\model\MascotaDAO.java
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\model\UsuarioDAO.java
 C:\Users\LENOVO\Documents\NetBeansProjects\Clinica_Veterinaria\src\main\java\com\mycompany\clinica_veterinaria\controller\UsuarioServlet.java

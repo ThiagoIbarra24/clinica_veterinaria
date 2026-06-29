@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.Set;
+import com.mycompany.clinica_veterinaria.model.AuditoriaDAO;
 
 public class LoginServlet extends HttpServlet {
 
@@ -25,7 +26,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect(request.getContextPath() + "/vista/login.jsp");
+        response.sendRedirect(request.getContextPath() + "/View/login.jsp");
     }
 
     @Override
@@ -41,16 +42,23 @@ public class LoginServlet extends HttpServlet {
         Usuario usuario = gestor.autenticar(usuario_n, password);
         
         //3.Verificar si el usuario existe
-        if(usuario != null){
-            //Guardando usuario en la sesion
+        if (usuario != null) {
             HttpSession session = request.getSession();
             session.setAttribute("usuario_n", usuario);
             session.setAttribute("rol", usuario.getRol());
-            
-            
-            //Redigir segun el rol del usuario
-            String menu = usuario.getMenuPrincipal();
-            response.sendRedirect(request.getContextPath() + "/View/"+menu);
+
+            // REGISTRAR EN AUDITORÍA el inicio de sesión
+            AuditoriaDAO auditoriaDAO = new AuditoriaDAO();
+            auditoriaDAO.registrar(
+                usuario.getNombre() + " " + usuario.getApellido(),  // quién
+                usuario.getRol(),                                    // su rol
+                "LOGIN",                                             // qué acción
+                "Sistema",                                           // módulo
+                "Inició sesión en el sistema"                        // descripción
+            );
+
+    response.sendRedirect(request.getContextPath() + "/View/" + usuario.getMenuPrincipal());
+
             
       }else{
             //Login fallido

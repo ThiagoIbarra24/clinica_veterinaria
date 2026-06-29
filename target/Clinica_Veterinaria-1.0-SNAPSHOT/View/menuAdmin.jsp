@@ -170,7 +170,7 @@
         <a href="<%= request.getContextPath() %>/CitaServlet" class="nav-link-custom"><i class="bi bi-calendar-check-fill"></i> Citas</a>
         <a href="<%= request.getContextPath() %>/HistorialServlet" class="nav-link-custom"><i class="bi bi-file-medical-fill"></i> Historial Clínico</a>
         <a href="<%= request.getContextPath() %>/ReporteServlet" class="nav-link-custom"><i class="bi bi-bar-chart-fill"></i> Reportería</a>
-        <a href="#" class="nav-link-custom"><i class="bi bi-shield-check"></i> Auditoría</a>
+        <a href="#" class="nav-link-custom"><i class="bi bi-shield-lock-fill"></i> Auditoría</a>
 
         <a href="<%= request.getContextPath() %>/LogoutServlet" class="nav-link-custom logout">
             <i class="bi bi-box-arrow-right"></i> Cerrar sesión
