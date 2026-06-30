@@ -79,7 +79,7 @@
                     <td><span class="badge-rol <%= claseRol %>"><%= u.getRol() %></span></td>
                     <td><span class="badge-estado"><%= u.getEstado() %></span></td>
                     <td>
-                        <button class="btn-accion btn-ver"><i class="bi bi-eye"></i></button>
+                        
                         <button class="btn-accion btn-editar"
                                 data-bs-toggle="modal" data-bs-target="#modalEditarUsuario"
                                 data-id="<%= u.getId_usuario() %>"

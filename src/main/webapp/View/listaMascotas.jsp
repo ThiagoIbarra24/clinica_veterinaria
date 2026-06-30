@@ -79,7 +79,7 @@
                     <td><%= m.getNombreDueno() %></td>
                     <td><span class="badge-estado"><%= m.getEstado() %></span></td>
                     <td>
-                        <button class="btn-accion btn-ver"><i class="bi bi-eye"></i></button>
+                        
                         <button class="btn-accion btn-editar"
                                 data-bs-toggle="modal" data-bs-target="#modalEditarMascota"
                                 data-id="<%= m.getId_mascota() %>"

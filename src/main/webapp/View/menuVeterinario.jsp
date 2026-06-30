@@ -179,10 +179,7 @@
             <input type="text" class="search-box" placeholder="Buscar pacientes...">
             <div class="user-info">
                 <span style="color:#888; font-size:14px">domingo, 14 de junio</span>
-                <div class="bell-badge">
-                    <i class="bi bi-bell"></i>
-                    <span>3</span>
-                </div>
+
                 <div class="avatar"><%= iniciales %></div>
                 <div>
                     <div style="font-weight:600; font-size:14px"><%= nombreCompleto %></div>

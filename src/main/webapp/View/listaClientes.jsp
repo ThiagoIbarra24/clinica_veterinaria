@@ -74,7 +74,7 @@
                     <td><%= c.getTelefono() %></td>
                     <td><span class="badge-estado"><%= c.getEstado() %></span></td>
                     <td>
-                        <button class="btn-accion btn-ver"><i class="bi bi-eye"></i></button>
+                        
                         <button class="btn-accion btn-editar"
                                 data-bs-toggle="modal" data-bs-target="#modalEditarCliente"
                                 data-id="<%= c.getId_cliente() %>"
