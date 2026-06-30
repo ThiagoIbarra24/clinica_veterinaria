@@ -1,5 +1,6 @@
 package com.mycompany.clinica_veterinaria.controller;
 
+import com.mycompany.clinica_veterinaria.model.AuditoriaDAO;
 import com.mycompany.clinica_veterinaria.model.Usuario;
 import com.mycompany.clinica_veterinaria.model.UsuarioDAO;
 import java.io.IOException;
