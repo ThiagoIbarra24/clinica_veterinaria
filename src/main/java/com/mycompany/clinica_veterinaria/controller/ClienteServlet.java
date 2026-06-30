@@ -27,11 +27,24 @@ public class ClienteServlet extends HttpServlet {
         request.getRequestDispatcher("/View/listaClientes.jsp").forward(request, response);
     }
 
-    @Override
+   @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         String accion = request.getParameter("accion");
+
+        // Obtener el usuario logueado de la sesión
+        jakarta.servlet.http.HttpSession session = request.getSession();
+        com.mycompany.clinica_veterinaria.model.Usuario usuarioLogueado =
+            (com.mycompany.clinica_veterinaria.model.Usuario) session.getAttribute("usuario_n");
+
+        String nombreUsuario = "Desconocido";
+        String rolUsuario = "Desconocido";
+        if (usuarioLogueado != null) {
+            nombreUsuario = usuarioLogueado.getNombre() + " " + usuarioLogueado.getApellido();
+            rolUsuario = usuarioLogueado.getRol();
+        }
+
+        AuditoriaDAO auditoriaDAO = new AuditoriaDAO();
 
         if (accion != null && accion.equals("insertar")) {
             // Recibir datos del formulario
@@ -40,7 +53,6 @@ public class ClienteServlet extends HttpServlet {
             String dni = request.getParameter("dni");
             String correo = request.getParameter("correo");
             String telefono = request.getParameter("telefono");
-
             // Crear objeto Cliente
             Cliente c = new Cliente();
             c.setNombre(nombre);
@@ -48,15 +60,20 @@ public class ClienteServlet extends HttpServlet {
             c.setDni(dni);
             c.setCorreo(correo);
             c.setTelefono(telefono);
-
             // Guardar
             ClienteDAO dao = new ClienteDAO();
             dao.insertar(c);
+
+            auditoriaDAO.registrar(nombreUsuario, rolUsuario, "CREAR", "Clientes",
+                "Creó el cliente: " + nombre + " " + apellido);
 
         } else if (accion != null && accion.equals("eliminar")) {
             int id = Integer.parseInt(request.getParameter("id_cliente"));
             ClienteDAO dao = new ClienteDAO();
             dao.eliminar(id);
+
+            auditoriaDAO.registrar(nombreUsuario, rolUsuario, "ELIMINAR", "Clientes",
+                "Eliminó el cliente #" + id);
 
         } else if (accion != null && accion.equals("actualizar")) {
             int id = Integer.parseInt(request.getParameter("id_cliente"));
@@ -65,7 +82,6 @@ public class ClienteServlet extends HttpServlet {
             String dni = request.getParameter("dni");
             String correo = request.getParameter("correo");
             String telefono = request.getParameter("telefono");
-
             Cliente c = new Cliente();
             c.setId_cliente(id);
             c.setNombre(nombre);
@@ -73,11 +89,12 @@ public class ClienteServlet extends HttpServlet {
             c.setDni(dni);
             c.setCorreo(correo);
             c.setTelefono(telefono);
-
             ClienteDAO dao = new ClienteDAO();
             dao.actualizar(c);
-        }
 
+            auditoriaDAO.registrar(nombreUsuario, rolUsuario, "EDITAR", "Clientes",
+                "Editó el cliente #" + id + ": " + nombre + " " + apellido);
+        }
         // Volver a la lista (recargar la tabla)
         response.sendRedirect(request.getContextPath() + "/ClienteServlet");
     }
