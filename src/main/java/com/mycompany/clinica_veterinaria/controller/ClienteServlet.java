@@ -1,5 +1,6 @@
 package com.mycompany.clinica_veterinaria.controller;
 
+import com.mycompany.clinica_veterinaria.model.AuditoriaDAO;
 import com.mycompany.clinica_veterinaria.model.Cliente;
 import com.mycompany.clinica_veterinaria.model.ClienteDAO;
 import jakarta.servlet.ServletException;

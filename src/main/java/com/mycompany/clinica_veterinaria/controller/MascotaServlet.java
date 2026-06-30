@@ -1,5 +1,6 @@
 package com.mycompany.clinica_veterinaria.controller;
 
+import com.mycompany.clinica_veterinaria.model.AuditoriaDAO;
 import com.mycompany.clinica_veterinaria.model.Mascota;
 import com.mycompany.clinica_veterinaria.model.MascotaDAO;
 import com.mycompany.clinica_veterinaria.model.Cliente;
@@ -31,43 +32,66 @@ public class MascotaServlet extends HttpServlet {
         request.getRequestDispatcher("/View/listaMascotas.jsp").forward(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+@Override
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
 
-        String accion = request.getParameter("accion");
+    String accion = request.getParameter("accion");
 
-        if (accion != null && accion.equals("insertar")) {
-            Mascota m = new Mascota();
-            m.setNombre_m(request.getParameter("nombre_m"));
-            m.setEspecie(request.getParameter("especie"));
-            m.setRaza(request.getParameter("raza"));
-            m.setEdad(Integer.parseInt(request.getParameter("edad")));
-            m.setPeso(Double.parseDouble(request.getParameter("peso")));
-            m.setId_cliente(Integer.parseInt(request.getParameter("id_cliente")));
+    // Obtener el usuario logueado de la sesión
+    jakarta.servlet.http.HttpSession session = request.getSession();
+    com.mycompany.clinica_veterinaria.model.Usuario usuarioLogueado =
+        (com.mycompany.clinica_veterinaria.model.Usuario) session.getAttribute("usuario_n");
 
-            MascotaDAO dao = new MascotaDAO();
-            dao.insertar(m);
-
-        } else if (accion != null && accion.equals("eliminar")) {
-            int id = Integer.parseInt(request.getParameter("id_mascota"));
-            MascotaDAO dao = new MascotaDAO();
-            dao.eliminar(id);
-
-        } else if (accion != null && accion.equals("actualizar")) {
-            Mascota m = new Mascota();
-            m.setId_mascota(Integer.parseInt(request.getParameter("id_mascota")));
-            m.setNombre_m(request.getParameter("nombre_m"));
-            m.setEspecie(request.getParameter("especie"));
-            m.setRaza(request.getParameter("raza"));
-            m.setEdad(Integer.parseInt(request.getParameter("edad")));
-            m.setPeso(Double.parseDouble(request.getParameter("peso")));
-            m.setId_cliente(Integer.parseInt(request.getParameter("id_cliente")));
-
-            MascotaDAO dao = new MascotaDAO();
-            dao.actualizar(m);
-        }
-
-        response.sendRedirect(request.getContextPath() + "/MascotaServlet");
+    String nombreUsuario = "Desconocido";
+    String rolUsuario = "Desconocido";
+    if (usuarioLogueado != null) {
+        nombreUsuario = usuarioLogueado.getNombre() + " " + usuarioLogueado.getApellido();
+        rolUsuario = usuarioLogueado.getRol();
     }
+
+    AuditoriaDAO auditoriaDAO = new AuditoriaDAO();
+
+    if (accion != null && accion.equals("insertar")) {
+        Mascota m = new Mascota();
+        m.setNombre_m(request.getParameter("nombre_m"));
+        m.setEspecie(request.getParameter("especie"));
+        m.setRaza(request.getParameter("raza"));
+        m.setEdad(Integer.parseInt(request.getParameter("edad")));
+        m.setPeso(Double.parseDouble(request.getParameter("peso")));
+        m.setId_cliente(Integer.parseInt(request.getParameter("id_cliente")));
+
+        MascotaDAO dao = new MascotaDAO();
+        dao.insertar(m);
+
+        auditoriaDAO.registrar(nombreUsuario, rolUsuario, "CREAR", "Mascotas",
+            "Creó la mascota: " + m.getNombre_m());
+
+    } else if (accion != null && accion.equals("eliminar")) {
+        int id = Integer.parseInt(request.getParameter("id_mascota"));
+        MascotaDAO dao = new MascotaDAO();
+        dao.eliminar(id);
+
+        auditoriaDAO.registrar(nombreUsuario, rolUsuario, "ELIMINAR", "Mascotas",
+            "Eliminó la mascota #" + id);
+
+    } else if (accion != null && accion.equals("actualizar")) {
+        Mascota m = new Mascota();
+        m.setId_mascota(Integer.parseInt(request.getParameter("id_mascota")));
+        m.setNombre_m(request.getParameter("nombre_m"));
+        m.setEspecie(request.getParameter("especie"));
+        m.setRaza(request.getParameter("raza"));
+        m.setEdad(Integer.parseInt(request.getParameter("edad")));
+        m.setPeso(Double.parseDouble(request.getParameter("peso")));
+        m.setId_cliente(Integer.parseInt(request.getParameter("id_cliente")));
+
+        MascotaDAO dao = new MascotaDAO();
+        dao.actualizar(m);
+
+        auditoriaDAO.registrar(nombreUsuario, rolUsuario, "EDITAR", "Mascotas",
+            "Editó la mascota #" + m.getId_mascota() + ": " + m.getNombre_m());
+    }
+
+    response.sendRedirect(request.getContextPath() + "/MascotaServlet");
+}
 }

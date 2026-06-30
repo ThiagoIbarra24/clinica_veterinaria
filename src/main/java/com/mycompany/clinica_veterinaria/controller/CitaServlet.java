@@ -1,5 +1,6 @@
 package com.mycompany.clinica_veterinaria.controller;
 
+import com.mycompany.clinica_veterinaria.model.AuditoriaDAO;
 import com.mycompany.clinica_veterinaria.model.Cita;
 import com.mycompany.clinica_veterinaria.model.CitaDAO;
 import com.mycompany.clinica_veterinaria.model.Cliente;
@@ -44,43 +45,66 @@ public class CitaServlet extends HttpServlet {
         request.getRequestDispatcher("/View/listaCitas.jsp").forward(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+@Override
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
 
-        String accion = request.getParameter("accion");
+    String accion = request.getParameter("accion");
 
-        if (accion != null && accion.equals("insertar")) {
-            Cita ci = new Cita();
-            ci.setFecha_hora(request.getParameter("fecha_hora"));
-            ci.setMotivo(request.getParameter("motivo"));
-            ci.setEstado_cita(request.getParameter("estado_cita"));
-            ci.setId_mascota(Integer.parseInt(request.getParameter("id_mascota")));
-            ci.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
-            ci.setId_cliente(Integer.parseInt(request.getParameter("id_cliente")));
+    // Obtener el usuario logueado de la sesión
+    jakarta.servlet.http.HttpSession session = request.getSession();
+    com.mycompany.clinica_veterinaria.model.Usuario usuarioLogueado =
+        (com.mycompany.clinica_veterinaria.model.Usuario) session.getAttribute("usuario_n");
 
-            CitaDAO dao = new CitaDAO();
-            dao.insertar(ci);
-
-        } else if (accion != null && accion.equals("eliminar")) {
-            int id = Integer.parseInt(request.getParameter("id_cita"));
-            CitaDAO dao = new CitaDAO();
-            dao.eliminar(id);
-
-        } else if (accion != null && accion.equals("actualizar")) {
-            Cita ci = new Cita();
-            ci.setId_cita(Integer.parseInt(request.getParameter("id_cita")));
-            ci.setFecha_hora(request.getParameter("fecha_hora"));
-            ci.setMotivo(request.getParameter("motivo"));
-            ci.setEstado_cita(request.getParameter("estado_cita"));
-            ci.setId_mascota(Integer.parseInt(request.getParameter("id_mascota")));
-            ci.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
-            ci.setId_cliente(Integer.parseInt(request.getParameter("id_cliente")));
-
-            CitaDAO dao = new CitaDAO();
-            dao.actualizar(ci);
-        }
-
-        response.sendRedirect(request.getContextPath() + "/CitaServlet");
+    String nombreUsuario = "Desconocido";
+    String rolUsuario = "Desconocido";
+    if (usuarioLogueado != null) {
+        nombreUsuario = usuarioLogueado.getNombre() + " " + usuarioLogueado.getApellido();
+        rolUsuario = usuarioLogueado.getRol();
     }
+
+    AuditoriaDAO auditoriaDAO = new AuditoriaDAO();
+
+    if (accion != null && accion.equals("insertar")) {
+        Cita ci = new Cita();
+        ci.setFecha_hora(request.getParameter("fecha_hora"));
+        ci.setMotivo(request.getParameter("motivo"));
+        ci.setEstado_cita(request.getParameter("estado_cita"));
+        ci.setId_mascota(Integer.parseInt(request.getParameter("id_mascota")));
+        ci.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
+        ci.setId_cliente(Integer.parseInt(request.getParameter("id_cliente")));
+
+        CitaDAO dao = new CitaDAO();
+        dao.insertar(ci);
+
+        auditoriaDAO.registrar(nombreUsuario, rolUsuario, "CREAR", "Citas",
+            "Agendó una cita para el " + ci.getFecha_hora());
+
+    } else if (accion != null && accion.equals("eliminar")) {
+        int id = Integer.parseInt(request.getParameter("id_cita"));
+        CitaDAO dao = new CitaDAO();
+        dao.eliminar(id);
+
+        auditoriaDAO.registrar(nombreUsuario, rolUsuario, "ELIMINAR", "Citas",
+            "Eliminó la cita #" + id);
+
+    } else if (accion != null && accion.equals("actualizar")) {
+        Cita ci = new Cita();
+        ci.setId_cita(Integer.parseInt(request.getParameter("id_cita")));
+        ci.setFecha_hora(request.getParameter("fecha_hora"));
+        ci.setMotivo(request.getParameter("motivo"));
+        ci.setEstado_cita(request.getParameter("estado_cita"));
+        ci.setId_mascota(Integer.parseInt(request.getParameter("id_mascota")));
+        ci.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
+        ci.setId_cliente(Integer.parseInt(request.getParameter("id_cliente")));
+
+        CitaDAO dao = new CitaDAO();
+        dao.actualizar(ci);
+
+        auditoriaDAO.registrar(nombreUsuario, rolUsuario, "EDITAR", "Citas",
+            "Editó la cita #" + ci.getId_cita());
+    }
+
+    response.sendRedirect(request.getContextPath() + "/CitaServlet");
+}
 }

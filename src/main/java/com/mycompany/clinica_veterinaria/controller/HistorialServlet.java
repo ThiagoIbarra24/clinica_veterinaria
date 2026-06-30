@@ -1,5 +1,6 @@
 package com.mycompany.clinica_veterinaria.controller;
 
+import com.mycompany.clinica_veterinaria.model.AuditoriaDAO;
 import com.mycompany.clinica_veterinaria.model.Historial;
 import com.mycompany.clinica_veterinaria.model.HistorialDAO;
 import com.mycompany.clinica_veterinaria.model.Cita;
@@ -30,41 +31,64 @@ public class HistorialServlet extends HttpServlet {
         request.getRequestDispatcher("/View/listaHistorial.jsp").forward(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+@Override
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
 
-        String accion = request.getParameter("accion");
+    String accion = request.getParameter("accion");
 
-        if (accion != null && accion.equals("insertar")) {
-            Historial h = new Historial();
-            h.setDiagnostico(request.getParameter("diagnostico"));
-            h.setTratamiento(request.getParameter("tratamiento"));
-            h.setObservacion(request.getParameter("observacion"));
-            h.setId_cita(Integer.parseInt(request.getParameter("id_cita")));
-            h.setId_mascota(Integer.parseInt(request.getParameter("id_mascota")));
+    // Obtener el usuario logueado de la sesión
+    jakarta.servlet.http.HttpSession session = request.getSession();
+    com.mycompany.clinica_veterinaria.model.Usuario usuarioLogueado =
+        (com.mycompany.clinica_veterinaria.model.Usuario) session.getAttribute("usuario_n");
 
-            HistorialDAO dao = new HistorialDAO();
-            dao.insertar(h);
-
-        } else if (accion != null && accion.equals("eliminar")) {
-            int id = Integer.parseInt(request.getParameter("id_historial"));
-            HistorialDAO dao = new HistorialDAO();
-            dao.eliminar(id);
-
-        } else if (accion != null && accion.equals("actualizar")) {
-            Historial h = new Historial();
-            h.setId_historial(Integer.parseInt(request.getParameter("id_historial")));
-            h.setDiagnostico(request.getParameter("diagnostico"));
-            h.setTratamiento(request.getParameter("tratamiento"));
-            h.setObservacion(request.getParameter("observacion"));
-            h.setId_cita(Integer.parseInt(request.getParameter("id_cita")));
-            h.setId_mascota(Integer.parseInt(request.getParameter("id_mascota")));
-
-            HistorialDAO dao = new HistorialDAO();
-            dao.actualizar(h);
-        }
-
-        response.sendRedirect(request.getContextPath() + "/HistorialServlet");
+    String nombreUsuario = "Desconocido";
+    String rolUsuario = "Desconocido";
+    if (usuarioLogueado != null) {
+        nombreUsuario = usuarioLogueado.getNombre() + " " + usuarioLogueado.getApellido();
+        rolUsuario = usuarioLogueado.getRol();
     }
+
+    AuditoriaDAO auditoriaDAO = new AuditoriaDAO();
+
+    if (accion != null && accion.equals("insertar")) {
+        Historial h = new Historial();
+        h.setDiagnostico(request.getParameter("diagnostico"));
+        h.setTratamiento(request.getParameter("tratamiento"));
+        h.setObservacion(request.getParameter("observacion"));
+        h.setId_cita(Integer.parseInt(request.getParameter("id_cita")));
+        h.setId_mascota(Integer.parseInt(request.getParameter("id_mascota")));
+
+        HistorialDAO dao = new HistorialDAO();
+        dao.insertar(h);
+
+        auditoriaDAO.registrar(nombreUsuario, rolUsuario, "CREAR", "Historial",
+            "Registró una entrada clínica para la cita #" + h.getId_cita());
+
+    } else if (accion != null && accion.equals("eliminar")) {
+        int id = Integer.parseInt(request.getParameter("id_historial"));
+        HistorialDAO dao = new HistorialDAO();
+        dao.eliminar(id);
+
+        auditoriaDAO.registrar(nombreUsuario, rolUsuario, "ELIMINAR", "Historial",
+            "Eliminó la entrada clínica #" + id);
+
+    } else if (accion != null && accion.equals("actualizar")) {
+        Historial h = new Historial();
+        h.setId_historial(Integer.parseInt(request.getParameter("id_historial")));
+        h.setDiagnostico(request.getParameter("diagnostico"));
+        h.setTratamiento(request.getParameter("tratamiento"));
+        h.setObservacion(request.getParameter("observacion"));
+        h.setId_cita(Integer.parseInt(request.getParameter("id_cita")));
+        h.setId_mascota(Integer.parseInt(request.getParameter("id_mascota")));
+
+        HistorialDAO dao = new HistorialDAO();
+        dao.actualizar(h);
+
+        auditoriaDAO.registrar(nombreUsuario, rolUsuario, "EDITAR", "Historial",
+            "Editó la entrada clínica #" + h.getId_historial());
+    }
+
+    response.sendRedirect(request.getContextPath() + "/HistorialServlet");
+}
 }

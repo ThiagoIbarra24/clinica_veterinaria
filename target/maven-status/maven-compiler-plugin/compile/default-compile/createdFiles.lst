@@ -21,6 +21,7 @@ com\mycompany\clinica_veterinaria\model\AuditoriaDAO.class
 com\mycompany\clinica_veterinaria\controller\MascotaServlet.class
 com\mycompany\clinica_veterinaria\model\Cita.class
 com\mycompany\clinica_veterinaria\model\Mascota.class
+com\mycompany\clinica_veterinaria\controller\AuditoriaServlet.class
 com\mycompany\clinica_veterinaria\resources\JakartaEE10Resource.class
 com\mycompany\clinica_veterinaria\model\Cliente.class
 com\mycompany\clinica_veterinaria\controller\UsuarioServlet.class
