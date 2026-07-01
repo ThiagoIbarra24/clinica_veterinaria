@@ -185,10 +185,7 @@
             <input type="text" class="search-box" placeholder="Buscar pacientes, clientes...">
             <div class="user-info">
                 <span style="color:#888; font-size:14px">domingo, 14 de junio</span>
-                <div class="bell-badge">
-                    <i class="bi bi-bell"></i>
-                    <span>3</span>
-                </div>
+
                 <div class="avatar"><%= iniciales %></div>
                 <div>
                     <div style="font-weight:600; font-size:14px"><%= nombreCompleto %></div>
@@ -229,12 +226,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card-stat">
-                        <div class="card-icon" style="background:#fae6e6; color:#e74c3c"><i class="bi bi-bell"></i></div>
-                        <div class="stat-label mt-3">Notificaciones</div>
-                        <div class="stat-number">5</div>
-                        <div style="color:#888; font-size:12px">Sin leer</div>
-                    </div>
+
                 </div>
             </div>
             <div class="mt-4 p-4" style="background:white; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.05)">
@@ -247,13 +239,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         
         
-        
-        
-        
-        
-        
-        
-        
+
         
     </body>
 </html>
