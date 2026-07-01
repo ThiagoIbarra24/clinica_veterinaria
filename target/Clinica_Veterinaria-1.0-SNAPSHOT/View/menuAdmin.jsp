@@ -5,6 +5,7 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.mycompany.clinica_veterinaria.model.Usuario"%>
+<%@page import="com.mycompany.clinica_veterinaria.model.DashboardDAO"%>
 <%
     // Recuperar el usuario de la sesión
     Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario_n");
@@ -17,6 +18,14 @@
     String rol = usuarioLogueado.getRol();
     // Iniciales para el avatar
     String iniciales = ("" + usuarioLogueado.getNombre().charAt(0) + usuarioLogueado.getApellido().charAt(0)).toUpperCase();
+    
+     // Cargar conteos reales del dashboard
+    DashboardDAO dashboardDAO = new DashboardDAO();
+    int totalClientes = dashboardDAO.contarClientes();
+    int totalMascotas = dashboardDAO.contarMascotas();
+    int totalCitas = dashboardDAO.contarCitas();
+    int citasHoy = dashboardDAO.contarCitasHoy();
+
 %>
 <!DOCTYPE html>
 <html>
@@ -205,7 +214,7 @@
                     <div class="card-stat">
                         <div class="card-icon" style="background:#e6f1fb; color:#1a3c5e"><i class="bi bi-calendar-check"></i></div>
                         <div class="stat-label mt-3">Citas Hoy</div>
-                        <div class="stat-number">18</div>
+                        <div class="stat-number"><%=citasHoy%></div>
                         <div style="color:#888; font-size:12px">4 pendientes de confirmar</div>
                     </div>
                 </div>
@@ -213,7 +222,7 @@
                     <div class="card-stat">
                         <div class="card-icon" style="background:#e1f5ee; color:#2ecc71"><i class="bi bi-people"></i></div>
                         <div class="stat-label mt-3">Clientes Registrados</div>
-                        <div class="stat-number">342</div>
+                        <div class="stat-number"><%=totalClientes%></div>
                         <div style="color:#888; font-size:12px">8 nuevos este mes</div>
                     </div>
                 </div>
@@ -221,13 +230,18 @@
                     <div class="card-stat">
                         <div class="card-icon" style="background:#faecd6; color:#e8a33d"><i class="bi bi-heart"></i></div>
                         <div class="stat-label mt-3">Mascotas Atendidas</div>
-                        <div class="stat-number">156</div>
+                        <div class="stat-number"><%=totalMascotas%></div>
                         <div style="color:#888; font-size:12px">Este mes</div>
                     </div>
                 </div>
                 <div class="col-md-3">
-
-                </div>
+    <div class="card-stat">
+        <div class="card-icon" style="background:#fae6e6; color:#e74c3c"><i class="bi bi-clipboard-data"></i></div>
+        <div class="stat-label mt-3">Total de Citas</div>
+        <div class="stat-number"><%= totalCitas %></div>
+        <div style="color:#888; font-size:12px">Citas registradas</div>
+    </div>
+</div>
             </div>
             <div class="mt-4 p-4" style="background:white; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.05)">
                 <p style="color:#888; text-align:center; margin:0">Aquí irán las próximas secciones (citas de hoy, gráficos, etc.)</p>

@@ -34,9 +34,9 @@ public class AuditoriaDAO {
         List<Auditoria> lista = new ArrayList<>();
         Connection con = Conexion.getConnection();
 
-        String sql = "SELECT id_auditoria, usuario, rol, accion, modulo, descripcion, " +
-                     "CAST(fecha_hora AS TEXT) AS fecha " +
-                     "FROM Auditoria ORDER BY id_auditoria DESC";
+String sql = "SELECT id_auditoria, usuario, rol, accion, modulo, descripcion, " +
+             "CAST(fecha_hora - INTERVAL '5 hours' AS TEXT) AS fecha " +
+             "FROM Auditoria ORDER BY id_auditoria DESC";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
