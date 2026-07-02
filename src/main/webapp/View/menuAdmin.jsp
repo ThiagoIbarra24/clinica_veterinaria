@@ -215,7 +215,7 @@
                         <div class="card-icon" style="background:#e6f1fb; color:#1a3c5e"><i class="bi bi-calendar-check"></i></div>
                         <div class="stat-label mt-3">Citas Hoy</div>
                         <div class="stat-number"><%=citasHoy%></div>
-                        <div style="color:#888; font-size:12px">4 pendientes de confirmar</div>
+                        <div style="color:#888; font-size:12px">Total de citas</div>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -223,7 +223,7 @@
                         <div class="card-icon" style="background:#e1f5ee; color:#2ecc71"><i class="bi bi-people"></i></div>
                         <div class="stat-label mt-3">Clientes Registrados</div>
                         <div class="stat-number"><%=totalClientes%></div>
-                        <div style="color:#888; font-size:12px">8 nuevos este mes</div>
+                        <div style="color:#888; font-size:12px">Total de clientes registrados</div>
                     </div>
                 </div>
                 <div class="col-md-3">

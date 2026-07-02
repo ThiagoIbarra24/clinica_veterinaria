@@ -5,6 +5,7 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.mycompany.clinica_veterinaria.model.Usuario"%>
+<%@page import="com.mycompany.clinica_veterinaria.model.DashboardDAO"%>
 <%
     Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario_n");
     if (usuarioLogueado == null) {
@@ -14,6 +15,11 @@
     String nombreCompleto = usuarioLogueado.getNombre() + " " + usuarioLogueado.getApellido();
     String rol = usuarioLogueado.getRol();
     String iniciales = ("" + usuarioLogueado.getNombre().charAt(0) + usuarioLogueado.getApellido().charAt(0)).toUpperCase();
+    // Cargar conteos reales del dashboard
+    DashboardDAO dashboardDAO = new DashboardDAO();
+    int totalMascotas = dashboardDAO.contarMascotas();
+    int totalCitas = dashboardDAO.contarCitas();
+    int citasHoy = dashboardDAO.contarCitasHoy();
 %>
 <!DOCTYPE html>
 <html>
@@ -199,7 +205,7 @@
                     <div class="card-stat">
                         <div class="card-icon" style="background:#e6f1fb; color:#1a3c5e"><i class="bi bi-calendar-check"></i></div>
                         <div class="stat-label mt-3">Mis Citas de Hoy</div>
-                        <div class="stat-number">6</div>
+                        <div class="stat-number"><%= citasHoy %></div>
                         <div style="color:#888; font-size:12px">2 pendientes de confirmar</div>
                     </div>
                 </div>
@@ -207,24 +213,16 @@
                     <div class="card-stat">
                         <div class="card-icon" style="background:#e1f5ee; color:#2ecc71"><i class="bi bi-heart"></i></div>
                         <div class="stat-label mt-3">Mascotas Atendidas</div>
-                        <div class="stat-number">42</div>
+                        <div class="stat-number"><%= totalMascotas %></div>
                         <div style="color:#888; font-size:12px">Este mes</div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card-stat">
                         <div class="card-icon" style="background:#faecd6; color:#e8a33d"><i class="bi bi-clock-history"></i></div>
-                        <div class="stat-label mt-3">Citas Pendientes</div>
-                        <div class="stat-number">2</div>
+                        <div class="stat-label mt-3">Total Citas</div>
+                        <div class="stat-number"><%= totalCitas %></div>
                         <div style="color:#888; font-size:12px">Por confirmar</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card-stat">
-                        <div class="card-icon" style="background:#fae6e6; color:#e74c3c"><i class="bi bi-bell"></i></div>
-                        <div class="stat-label mt-3">Notificaciones</div>
-                        <div class="stat-number">3</div>
-                        <div style="color:#888; font-size:12px">Sin leer</div>
                     </div>
                 </div>
             </div>

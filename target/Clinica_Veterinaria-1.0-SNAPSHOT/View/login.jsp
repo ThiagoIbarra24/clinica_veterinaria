@@ -115,14 +115,7 @@
 </head>
 <body>
 
-    <!-- Logo y título -->
-    <div class="text-center mb-3">
-        <div class="logo-box">
-            <i class="bi bi-patch-heart-fill"></i>
-        </div>
-        <h4 class="text-white fw-bold mb-1">VetSystem</h4>
-        <p class="text-white-50" style="font-size:14px">Sistema de Gestión Veterinaria</p>
-    </div>
+
 
     <!-- Card login -->
     <div class="card-login bg-white">

@@ -5,6 +5,7 @@ com\mycompany\clinica_veterinaria\model\Usuario.class
 com\mycompany\clinica_veterinaria\controller\HistorialServlet.class
 com\mycompany\clinica_veterinaria\model\GestionLogin.class
 com\mycompany\clinica_veterinaria\model\Recepcionista.class
+com\mycompany\clinica_veterinaria\model\DashboardDAO.class
 com\mycompany\clinica_veterinaria\model\Admin.class
 com\mycompany\clinica_veterinaria\controller\ReporteServlet.class
 com\mycompany\clinica_veterinaria\controller\LoginServlet.class

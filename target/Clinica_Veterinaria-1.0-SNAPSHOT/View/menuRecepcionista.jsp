@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.mycompany.clinica_veterinaria.model.Usuario"%>
+<%@page import="com.mycompany.clinica_veterinaria.model.DashboardDAO"%>
 <%
     Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario_n");
     if (usuarioLogueado == null) {
@@ -15,6 +16,11 @@
     String nombreCompleto = usuarioLogueado.getNombre() + " " + usuarioLogueado.getApellido();
     String rol = usuarioLogueado.getRol();
     String iniciales = ("" + usuarioLogueado.getNombre().charAt(0) + usuarioLogueado.getApellido().charAt(0)).toUpperCase();
+    // Cargar conteos reales del dashboard
+    DashboardDAO dashboardDAO = new DashboardDAO();
+    int totalClientes = dashboardDAO.contarClientes();
+    int citasHoy = dashboardDAO.contarCitasHoy();
+    int totalCitas = dashboardDAO.contarCitas();
 %>
 <!DOCTYPE html>
 <html>
@@ -215,15 +221,15 @@
                     <div class="card-stat">
                         <div class="card-icon" style="background:#e6f1fb; color:#1a3c5e"><i class="bi bi-calendar-check"></i></div>
                         <div class="stat-label mt-3">Citas de Hoy</div>
-                        <div class="stat-number">18</div>
+                        <div class="stat-number"><%= citasHoy %></div>
                         <div style="color:#888; font-size:12px">Todas las citas del día</div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card-stat">
                         <div class="card-icon" style="background:#faecd6; color:#e8a33d"><i class="bi bi-clock-history"></i></div>
-                        <div class="stat-label mt-3">Citas Pendientes</div>
-                        <div class="stat-number">4</div>
+                        <div class="stat-label mt-3">Citas</div>
+                        <div class="stat-number"><%= totalCitas %></div>
                         <div style="color:#888; font-size:12px">Por confirmar</div>
                     </div>
                 </div>
@@ -231,7 +237,7 @@
                     <div class="card-stat">
                         <div class="card-icon" style="background:#e1f5ee; color:#2ecc71"><i class="bi bi-people"></i></div>
                         <div class="stat-label mt-3">Clientes Registrados</div>
-                        <div class="stat-number">342</div>
+                        <div class="stat-number"><%= totalClientes %></div>
                         <div style="color:#888; font-size:12px">8 nuevos este mes</div>
                     </div>
                 </div>
